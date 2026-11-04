@@ -74,7 +74,7 @@ The Storybook is public and linked from akshaygite.com. Its first page, "Read me
 
   Built with Claude and Claude Code, directed and reviewed by me.
 
-  akshaygite.com · Repository: TODO(akshay) add the URL once the repo is public
+  akshaygite.com · Repository: github.com/akshaysic/graphpaper
 
 ## Writing rules (docs and story copy)
 - No em-dashes or en-dashes as punctuation. Use full stops, commas or colons.
