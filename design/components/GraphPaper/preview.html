@@ -1,0 +1,15 @@
+<!-- @dsCard group="Canvas" height=200 -->
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>GraphPaper preview</title></head>
+<body>
+<div id="root"></div>
+<script>
+var G = window.Graphpaper, h = React.createElement;
+ReactDOM.createRoot(document.getElementById('root')).render(
+  h('div', { className: 'gp-stage' },
+    h(G.GraphPaper, { framed: true, style: { height: 150, display: 'grid', placeItems: 'end start' } },
+      h('span', { className: 'label muted' }, 'paper and grid-line, 18px cells'))));
+</script>
+</body>
+</html>

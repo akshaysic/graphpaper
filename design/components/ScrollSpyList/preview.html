@@ -1,0 +1,20 @@
+<!-- @dsCard group="Sections" height=540 width=1200 -->
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>ScrollSpyList preview</title></head>
+<body>
+<div id="root"></div>
+<script>
+var G = window.Graphpaper, h = React.createElement;
+var models = ['Diffusion', 'Motion', 'Depth', 'Relight', 'Upscale', 'Matte', 'Voice', 'Mesh', 'Vector'];
+function Demo() {
+  var s = React.useState(0);
+  return h('div', { 'data-theme': 'dark', style: { background: 'var(--ground)', padding: '0 28.8px' } },
+    h(G.ScrollSpyList, { items: models, height: 520, onActiveChange: s[1],
+      aside: h('div', { style: { paddingTop: 64.8 } },
+        h(G.SectionIntro, { title: 'Every Model, One Graph' }, 'Each model is a node. Swap one without rebuilding the rest. Active: ' + models[s[0]] + '.')) }));
+}
+ReactDOM.createRoot(document.getElementById('root')).render(h(Demo));
+</script>
+</body>
+</html>

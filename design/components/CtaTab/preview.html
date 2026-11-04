@@ -1,0 +1,18 @@
+<!-- @dsCard group="Actions" height=260 width=960 -->
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>CtaTab preview</title></head>
+<body>
+<div id="root"></div>
+<script>
+var G = window.Graphpaper, h = React.createElement;
+function Row(theme) {
+  return h('div', { 'data-theme': theme, className: 'gp-stage gp-row', style: { background: 'var(--ground)', alignItems: 'flex-start' } },
+    h(G.CtaTab, { size: 's', corner: 'bl', href: '#' }, 'Start now'),
+    h(G.CtaTab, { size: 'l', corner: 'bl', href: '#' }, 'Start now'));
+}
+ReactDOM.createRoot(document.getElementById('root')).render(h(React.Fragment, null, Row('light'), Row('dark'),
+  h('div', { 'data-theme': 'dark', style: { background: 'var(--ground)', display: 'flex', justifyContent: 'flex-end', paddingTop: 16 } }, h(G.CtaTab, { size: 'xl', corner: 'tl', href: '#' }, 'Start now'))));
+</script>
+</body>
+</html>

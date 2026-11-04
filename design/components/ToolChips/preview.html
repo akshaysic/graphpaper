@@ -1,0 +1,15 @@
+<!-- @dsCard group="Content" height=420 width=1100 -->
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>ToolChips preview</title></head>
+<body>
+<div id="root"></div>
+<script>
+var G = window.Graphpaper, h = React.createElement;
+var items = ['Crop', 'Invert', 'Outpaint', 'Inpaint', 'Mask', 'Upscale', 'Relight', 'Channels', 'Describe', 'Depth'].map(function (t) { return { label: t, alt: t + ' result' }; });
+var positions = [{ x: 14, y: 14 }, { x: 34, y: 26 }, { x: 26, y: 42 }, { x: 13, y: 56 }, { x: 33, y: 70 }, { x: 22, y: 84 }, { x: 84, y: 14 }, { x: 70, y: 30 }, { x: 74, y: 50 }, { x: 82, y: 72 }];
+ReactDOM.createRoot(document.getElementById('root')).render(
+  h(G.GraphPaper, null, h(G.ToolChips, { items: items, layout: 'scatter', positions: positions, height: 400, center: { width: 280, height: 280, alt: 'Source image' } })));
+</script>
+</body>
+</html>

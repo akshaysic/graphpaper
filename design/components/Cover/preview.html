@@ -1,0 +1,60 @@
+<!-- @dsCard height=288 -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Graphpaper</title>
+<style>
+  html, body { margin: 0; height: 100%; }
+  body { background: var(--ground); color: var(--ink); font-family: var(--font-sans); overflow: hidden; }
+  .cover { position: relative; height: 288px; overflow: hidden; }
+  .art { position: absolute; top: 0; left: 480px; width: 480px; height: 288px; overflow: hidden; }
+  .art svg { display: block; width: 480px; height: 288px; }
+  .paper { fill: var(--paper); }
+  .rule { fill: none; stroke: var(--grid-line); stroke-width: 1; }
+  .deep { fill: var(--ink); rx: var(--radius-m); }
+  .media { fill: var(--media); rx: var(--radius-m); }
+  .sage { fill: var(--sage); rx: var(--radius-m); }
+  .lemon { fill: var(--lemon); rx: var(--radius-xl); }
+  .wire { fill: none; stroke: var(--ink); stroke-width: 1.4; }
+  .port { fill: var(--ink); stroke: var(--paper); stroke-width: 1.5; }
+  .words { position: absolute; left: 32px; bottom: 32px; max-width: 440px; }
+  .name { margin: 0; font-size: 80px; line-height: .92; font-weight: 400; letter-spacing: -0.049em; color: var(--ink); }
+  .tag { margin: 12px 0 0 2px; font-size: 14px; line-height: 20px; color: var(--ink-muted); }
+</style>
+</head>
+<body>
+<div class="cover">
+<div class="art" aria-hidden="true">
+<svg viewBox="0 0 480 288" width="480" height="288">
+<!--
+  blocks      lemon 220x140 bleeding off the right and bottom edges so only its top-left radius-xl corner shows (the CTA tab) · ink 120x120 · sage 136x96 · media 120x72; about 40% of 960x288 with the paper ground
+  arrangement three nodes on graph paper wired into one lemon tab in the bottom-right corner, the way every page ends on its CTA
+  pattern     graph-paper rules at grid-cell plus three connector curves with port discs, from "connectors leave and arrive horizontally" in the README
+  scales      grid pitch grid-cell (18); gutters space-l multiples; node corners radius-m, tab corner radius-xl; wire 1.4 with 4.5 discs as in NodeCanvas
+-->
+<defs><pattern id="gp-grid" width="18" height="18" patternUnits="userSpaceOnUse"><path class="rule" d="M18 0H0V18"/></pattern></defs>
+<rect class="paper" x="0" y="0" width="480" height="288"/>
+<rect x="0" y="0" width="480" height="288" fill="url(#gp-grid)"/>
+<path class="wire" d="M150 84 C190 84, 186 98, 226 98"/>
+<path class="wire" d="M150 222 C230 222, 230 236, 300 236"/>
+<path class="wire" d="M362 104 C420 104, 432 140, 412 184"/>
+<rect class="deep" x="30" y="36" width="120" height="120" rx="10"/>
+<rect class="media" x="30" y="186" width="120" height="72" rx="10"/>
+<rect class="sage" x="226" y="56" width="136" height="96" rx="10"/>
+<rect class="lemon" x="300" y="184" width="220" height="140" rx="30"/>
+<circle class="port" cx="150" cy="84" r="4.5"/>
+<circle class="port" cx="226" cy="98" r="4.5"/>
+<circle class="port" cx="150" cy="222" r="4.5"/>
+<circle class="port" cx="300" cy="236" r="4.5"/>
+<circle class="port" cx="362" cy="104" r="4.5"/>
+<circle class="port" cx="412" cy="184" r="4.5"/>
+</svg>
+</div>
+<div class="words">
+<h1 class="name">Graphpaper</h1>
+<p class="tag">Nodes, graph paper and one lemon accent.</p>
+</div>
+</div>
+</body>
+</html>

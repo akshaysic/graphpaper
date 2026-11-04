@@ -1,0 +1,14 @@
+<!-- @dsCard group="Type" height=300 width=1200 -->
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>SectionIntro preview</title></head>
+<body>
+<div id="root"></div>
+<script>
+var G = window.Graphpaper, h = React.createElement;
+ReactDOM.createRoot(document.getElementById('root')).render(
+  h(G.GraphPaper, { style: { padding: '64.8px' } },
+    h(G.SectionIntro, { title: 'Control Every Layer', align: 'center' }, 'Layers, type and blend modes sit in one panel, so a finished frame never leaves the graph.')));
+</script>
+</body>
+</html>

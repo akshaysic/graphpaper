@@ -1,0 +1,22 @@
+<!-- @dsCard group="Motion" height=360 -->
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>Reveal preview</title></head>
+<body>
+<div id="root"></div>
+<script>
+var G = window.Graphpaper, h = React.createElement;
+function Demo() {
+  var ref = React.useRef(null);
+  var blocks = [1, 2, 3, 4, 5, 6];
+  return h('div', { ref: ref, className: 'gp-paper', style: { height: 340, overflowY: 'auto', padding: '16px 24px' } },
+    h('p', { className: 'intro', style: { marginBottom: 360 } }, 'Scroll this frame. Blocks below the fold rise 24px and fade in over 500ms. Blocks already on screen never hide.'),
+    blocks.map(function (b) {
+      return h(G.Reveal, { key: b, root: ref, style: { marginBottom: 24 } },
+        h('div', { style: { height: 120, borderRadius: 'var(--radius-m)', background: 'var(--surface)', display: 'grid', placeItems: 'center', color: 'var(--ink)' } }, 'Block ' + b));
+    }));
+}
+ReactDOM.createRoot(document.getElementById('root')).render(h(Demo));
+</script>
+</body>
+</html>

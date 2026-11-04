@@ -1,0 +1,15 @@
+<!-- @dsCard group="Content" height=380 width=960 -->
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>MediaCard preview</title></head>
+<body>
+<div id="root"></div>
+<script>
+var G = window.Graphpaper, h = React.createElement;
+ReactDOM.createRoot(document.getElementById('root')).render(
+  h('div', { 'data-theme': 'dark', className: 'gp-row', style: { background: 'var(--ground)', padding: 28.8, gap: 28.8 } },
+    h(G.MediaCard, { title: 'Rotate a Product', alt: 'Chair turning on a plinth', tags: ['Prompt', 'Image', 'Rotate'], href: '#' }),
+    h(G.MediaCard, { title: 'Relight a Scene', alt: 'Room in evening light', active: true, href: '#' })));
+</script>
+</body>
+</html>

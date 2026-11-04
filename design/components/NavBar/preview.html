@@ -1,0 +1,22 @@
+<!-- @dsCard group="Navigation" height=380 width=1100 -->
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>NavBar preview</title></head>
+<body>
+<div id="root"></div>
+<script>
+var G = window.Graphpaper, h = React.createElement;
+function Demo() {
+  var ref = React.useRef(null);
+  var p = G.useScrollProgress(ref, { start: 0, end: 150 });
+  return h('div', { ref: ref, className: 'gp-paper', style: { height: 360, overflowY: 'auto' } },
+    h(G.NavBar, { brand: 'Studio', position: 'sticky', blend: true, progress: p, cta: { label: 'Start now', href: '#' },
+      links: [{ label: 'Work', href: '#' }, { label: 'Pricing', href: '#' }, { label: 'Docs', href: '#' }, { label: 'Sign in', href: '#' }] }),
+    h('div', { style: { padding: '96px 16px 900px' } },
+      h('h1', { className: 'display-xl gp-fluid-xl' }, 'Scroll this frame'),
+      h('p', { className: 'intro', style: { maxWidth: '46ch', marginTop: 28.8 } }, 'Over the first 150px of scroll the CTA tab shrinks from a 40px statement to a 12px uppercase label. Progress ' + Math.round(p * 100) + '%.')));
+}
+ReactDOM.createRoot(document.getElementById('root')).render(h(Demo));
+</script>
+</body>
+</html>

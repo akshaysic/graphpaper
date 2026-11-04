@@ -1,0 +1,22 @@
+<!-- @dsCard group="Canvas" height=540 width=1160 -->
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>NodeCanvas preview</title></head>
+<body>
+<div id="root"></div>
+<script>
+var G = window.Graphpaper, h = React.createElement;
+var nodes = [
+  { id: 'sketch', type: 'Image', model: 'Upload', x: 24, y: 40, w: 160, h: 180, alt: 'Pencil sketch of a chair' },
+  { id: 'brief', type: 'Text', kind: 'text', x: 24, y: 300, w: 200, h: 110, text: 'Oak chair, studio light, grey seamless backdrop, three-quarter view.' },
+  { id: 'gen', type: 'Image', model: 'Diffusion 3', x: 330, y: 30, w: 260, h: 340, alt: 'Generated chair render' },
+  { id: 'up', type: 'Image', model: 'Upscale 4x', x: 690, y: 40, w: 160, h: 170, alt: 'Upscaled detail' },
+  { id: 'mask', type: 'Mask', model: 'Extract', x: 690, y: 280, w: 160, h: 130, alt: 'Chair cut-out mask' },
+  { id: 'vid', type: 'Video', model: 'Motion 2', x: 930, y: 60, w: 170, h: 340, alt: 'Turntable clip' }
+];
+var links = [['sketch', 'gen'], ['brief', 'gen'], ['gen', 'up'], ['gen', 'mask'], ['up', 'vid'], ['mask', 'vid']];
+ReactDOM.createRoot(document.getElementById('root')).render(
+  h('div', { className: 'gp-stage' }, h(G.NodeCanvas, { nodes: nodes, links: links, height: 490, hint: 'Drag nodes' })));
+</script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+<!-- @dsCard group="Content" height=380 width=1100 -->
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>HeaderCard preview</title></head>
+<body>
+<div id="root"></div>
+<script>
+var G = window.Graphpaper, h = React.createElement;
+ReactDOM.createRoot(document.getElementById('root')).render(
+  h(G.GraphPaper, { style: { padding: 28.8 } },
+    h(G.Panel, { style: { gridTemplateColumns: 'minmax(0, 1fr) minmax(0, 2.2fr)', height: 320 } },
+      h(G.HeaderCard, { label: 'Prompt' }, 'A ceramic vase on a plinth, late sun from the right, a soft shadow falling left. Muted sand and teal.'),
+      h(G.HeaderCard, { label: 'Output', tone: 'media', alt: 'Final render', action: { label: 'Run' } }))));
+</script>
+</body>
+</html>
