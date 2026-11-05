@@ -1,0 +1,32 @@
+import { Meta, Unstyled } from '@storybook/addon-docs/blocks';
+
+import tokens from '../tokens/tokens.json';
+import { DurationDemos, EasingDemos, OpacityTable } from './Foundations';
+
+<Meta title="Foundations/Motion" />
+
+# Motion
+
+Hover or focus a track to play it. With reduced motion on, the block changes fill instead of moving.
+
+## Duration
+
+Each block moves on ease-out-cubic over its duration.
+
+<Unstyled>
+  <DurationDemos />
+</Unstyled>
+
+## Easing
+
+Each block moves over dur-slow on its curve.
+
+<Unstyled>
+  <EasingDemos />
+</Unstyled>
+
+## Opacity
+
+<Unstyled>
+  <OpacityTable />
+</Unstyled>

@@ -1,0 +1,72 @@
+/* Foundations pages only. Values come from tokens.css; type comes from the eight style classes. */
+
+.fd-stack { display: flex; flex-direction: column; gap: var(--space-m); }
+/* The top-level block on each page sits apart from the MDX prose around it. */
+.fd-stack, .fd-table, .fd-radius-grid { margin-block: var(--space-m); }
+.fd-stack .fd-stack { margin-block: 0; }
+.fd-group { display: flex; flex-direction: column; gap: var(--space-s); }
+.fd-muted { color: var(--ink-muted); }
+.fd-stack p, .fd-group p, .fd-table p, .fd-radius p { margin: 0; }
+
+/* Token name over its value, used in every row */
+.fd-token-name { display: flex; flex-direction: column; gap: var(--space-xs); color: var(--ink); }
+.fd-token-name code, .fd-themed code { font-family: var(--font-sans); overflow-wrap: anywhere; }
+
+/* Name, drawing, usage. Stacks below 768. */
+.fd-row { display: grid; grid-template-columns: minmax(0, 12rem) minmax(0, 1fr) minmax(0, 18rem); gap: var(--space-m); align-items: center; }
+
+/* Colour and shadow tables: each theme cell carries its own data-theme */
+.fd-table { display: flex; flex-direction: column; color: var(--ink); }
+.fd-table__row { display: grid; grid-template-columns: minmax(0, 9rem) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 16rem); gap: var(--space-s); align-items: center; padding: var(--space-xs) 0; }
+.fd-table__name { color: var(--ink); }
+.fd-themed { display: flex; align-items: center; gap: var(--space-s); padding: var(--space-s); background: var(--ground); color: var(--ink); border-radius: var(--radius-m); }
+.fd-swatch { flex: none; width: var(--space-l); height: var(--space-l); border-radius: var(--radius-m); border: 1px solid var(--ink-muted); box-sizing: border-box; }
+.fd-swatch--shadow { background: var(--surface); border: 0; }
+
+/* Type */
+.fd-type { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 18rem); gap: var(--space-m); align-items: baseline; padding: var(--space-s) 0; color: var(--ink); }
+.fd-type__sample { overflow-wrap: anywhere; }
+.fd-type__specs { display: flex; flex-direction: column; gap: var(--space-xs); margin: 0; }
+.fd-type__specs dd { margin: 0; }
+
+/* Spacing and radius, drawn at 1:1 */
+.fd-measure { min-width: 0; }
+.fd-bar { height: var(--space-s); background: var(--ink); }
+.fd-bar--block { width: var(--space-l); height: var(--space-l); border-radius: var(--radius-m); }
+.fd-radius-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr)); gap: var(--space-m); }
+.fd-radius { display: flex; flex-direction: column; gap: var(--space-s); margin: 0; }
+.fd-radius__shape { width: calc(var(--space-l) * 2); height: calc(var(--space-l) * 2); background: var(--surface); border: 2px solid var(--ink); box-sizing: border-box; }
+
+/* Motion demos play on hover or focus. Duration rows move on ease-out-cubic; easing rows move over dur-slow. */
+.fd-motion {
+  --fd-dur: var(--dur-slow);
+  --fd-ease: var(--ease-out-cubic);
+  --fd-block: var(--space-l);
+  container-type: inline-size;
+  padding: var(--space-xs);
+  background: var(--paper);
+  border-radius: var(--radius-m);
+  cursor: default;
+}
+.fd-motion:focus-visible { outline: none; box-shadow: var(--focus-ring); }
+.fd-motion__block {
+  width: var(--fd-block);
+  height: var(--space-m);
+  background: var(--ink);
+  border-radius: var(--radius-s);
+  transition: transform var(--fd-dur) var(--fd-ease), background-color var(--fd-dur) var(--ease-out-quad);
+}
+.fd-motion:hover .fd-motion__block,
+.fd-motion:focus-visible .fd-motion__block { transform: translateX(calc(100cqi - var(--fd-block))); }
+
+@media (max-width: 767px) {
+  .fd-row, .fd-type, .fd-table__row { grid-template-columns: minmax(0, 1fr); gap: var(--space-xs); }
+  .fd-table__head { display: none; }
+  .fd-table__row { padding: var(--space-s) 0; }
+}
+
+/* Reduced motion keeps the colour change and drops the movement, as README Motion says. */
+@media (prefers-reduced-motion: reduce) {
+  .fd-motion:hover .fd-motion__block,
+  .fd-motion:focus-visible .fd-motion__block { transform: none; background: var(--lemon); }
+}

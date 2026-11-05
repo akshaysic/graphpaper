@@ -6,3 +6,4 @@ src/tokens/tokens.css
 .DS_Store
 .env*
 .memory/
+*.tsbuildinfo
