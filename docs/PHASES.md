@@ -5,7 +5,7 @@ Each phase is one Claude Code run. Read docs/BRIEF.md first. Stop at every gate:
 | Phase | Status |
 |---|---|
 | 1 Foundations | Done, 1586db8 |
-| 2a Static components | Next |
+| 2a Static components | Ready to commit |
 | 2b Behaviour components | To do |
 | 3 QA | To do |
 | 4 Publish | To do |

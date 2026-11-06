@@ -54,7 +54,8 @@ const preview: Preview = {
       },
     },
   },
-  initialGlobals: { theme: 'light' },
+  // npm test runs every story in each theme; the dark pass sets GP_THEME. Storybook itself opens light.
+  initialGlobals: { theme: import.meta.env.GP_THEME ?? 'light' },
   decorators: [withTheme],
   parameters: {
     layout: 'fullscreen',
@@ -66,13 +67,21 @@ const preview: Preview = {
         order: [
           'Foundations',
           ['Read me first', 'Overview', 'Colors', 'Type', 'Spacing and radius', 'Motion'],
+          // Components follow BRIEF Inventory order, not the alphabet.
           'Actions',
+          ['CtaTab', 'NavLink', 'ArrowButton', 'Toggle'],
           'Navigation',
+          ['NavBar'],
           'Type',
+          ['SplitHeadline', 'SectionIntro'],
           'Canvas',
+          ['GraphPaper', 'NodeCard', 'NodeCanvas'],
           'Content',
+          ['ToolChips', 'HeaderCard', 'MediaCard', 'CardRail'],
           'Sections',
+          ['ScrollSpyList', 'FooterSlab'],
           'Motion',
+          ['ScrollMorph', 'Reveal'],
         ],
       },
     },
