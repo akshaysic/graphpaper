@@ -12,7 +12,7 @@ Graphpaper is a system for showing a creative tool built from nodes: big quiet t
 
 - Build pages from alternating bands: `paper` with the grid for product sections, plain `ground` for reading, and dark bands (`data-theme="dark"` on the section) for card rails, scroll-spy lists and the footer surround.
 - `action` is the only accent. It fills CTA tabs, the toggle and a hovered chip. Text on it is `on-action`.
-- Header bands are neutral: `eggshell` with `on-light` text. Only a band that means "act here" takes `action`, through `tone="action"`, and nothing uses it by default.
+- Header bands are neutral and contrast with their own body: `sage` on a text card (eggshell body), `eggshell` on a media card, both with `on-light` text. Only a band that means "act here" takes `action`, through `tone="action"`, and nothing uses it by default.
 - In a CardRail the card tabs are neutral (`surface` fill, `ink` text) and take `action` only on hover and focus.
 - `action-ink` is for links and text accents: the darker shade on ground, paper and white in light, `action` itself on dark bands. The active scroll-spy item on a dark band uses it.
 - One action element per view: if two compete, remove one.

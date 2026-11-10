@@ -161,8 +161,10 @@ h1, h2, h3, p { margin: 0; font-weight: 400; }
 
 /* HeaderCard and Panel */
 .gp-hcard { position: relative; display: flex; flex-direction: column; min-width: 0; border-radius: var(--radius-m); overflow: hidden; background: var(--eggshell); color: var(--on-light); }
-/* Bands are neutral. Only tone="action", for a band that means "act here", takes the action fill. */
-.gp-hcard__band { background: var(--eggshell); color: var(--on-light); padding: var(--space-s); }
+/* Bands are neutral and contrast with their own body: sage over an eggshell text body, eggshell over a media body.
+   Only tone="action", for a band that means "act here", takes the action fill. */
+.gp-hcard__band { background: var(--sage); color: var(--on-light); padding: var(--space-s); }
+.gp-hcard--media .gp-hcard__band { background: var(--eggshell); }
 .gp-hcard--action .gp-hcard__band { background: var(--action); color: var(--on-action); }
 .gp-hcard__body { flex: 1; position: relative; padding: var(--space-s); }
 .gp-hcard--media .gp-hcard__body { padding: 0; background: var(--media); min-height: 160px; }
