@@ -32,7 +32,7 @@ const linkPreviewHead = `
   <meta property="og:image" content="${SITE_URL}/og.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Graphpaper: nodes, graph paper and one lemon accent.">
+  <meta property="og:image:alt" content="Graphpaper: nodes, graph paper and one action accent.">
   <meta name="twitter:card" content="summary_large_image">
 `;
 

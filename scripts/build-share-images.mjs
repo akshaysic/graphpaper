@@ -19,12 +19,12 @@ const COVER_WIDTH = 960;
 const COVER_HEIGHT = 288;
 const SHARE_HEIGHT = 504;
 const SHARE_SCALE = 1.25;
-// The art is a 480-wide SVG. Extra rows of graph paper go above the nodes, so the lemon tab
+// The art is a 480-wide SVG. Extra rows of graph paper go above the nodes, so the action tab
 // still bleeds off the bottom-right corner as it does on the cover.
 const ART_WIDTH = 480;
 const EXTRA_PAPER = SHARE_HEIGHT - COVER_HEIGHT;
 
-// The favicon is the lemon tab's rounded corner with the wire and port that reach it, cropped from the same art.
+// The favicon is the action tab's rounded corner with the wire and port that reach it, cropped from the same art.
 const FAVICON_SIZE = 64;
 const FAVICON_VIEWBOX = '274 180 64 64';
 

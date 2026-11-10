@@ -68,5 +68,5 @@
 /* Reduced motion keeps the colour change and drops the movement, as README Motion says. */
 @media (prefers-reduced-motion: reduce) {
   .fd-motion:hover .fd-motion__block,
-  .fd-motion:focus-visible .fd-motion__block { transform: none; background: var(--lemon); }
+  .fd-motion:focus-visible .fd-motion__block { transform: none; background: var(--action); }
 }

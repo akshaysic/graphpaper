@@ -43,6 +43,8 @@ Read docs/BRIEF.md first.
 
 Task: port NavBar, NodeCanvas, ToolChips, CardRail, ScrollSpyList, FooterSlab, ScrollMorph and Reveal from design/components/bundle.js, each with stories, following BRIEF Porting rules and Stories. Export them from src/index.ts.
 
+NavBar is built to the Navigation rules in design/README.md (rules 1 to 11), not ported as it is in bundle.js: solid surface, no blend layers, the phone Menu sheet below 768 and the "Skip to content" link. FooterSlab is frozen: port it as it is.
+
 Add one interaction test each:
 - Toggle: a click flips aria-checked.
 - CardRail: Next moves the count from 2 / 5 to 3 / 5.
@@ -50,12 +52,15 @@ Add one interaction test each:
 - NodeCanvas: a focused node moves 8px on ArrowRight.
 - ScrollSpyList: scrolling its container activates the next item.
 - ScrollMorph: with reduced motion emulated, the toggle swaps to the tool view without scrolling.
-- NavBar: scrolling its container 150px adds the compact state to the CTA.
+- NavBar: Menu opens the sheet and traps focus.
+- NavBar: Esc closes the sheet.
+- NavBar: after 150px of scroll the bar gets its border.
+- NavBar: aria-current renders the pill.
 
 Then run lint, typecheck, tests, build-storybook and the accessibility check in both themes. Report results per component. Do not commit.
 ```
 
-**Gate (Akshay):** in the browser, drag the canvas, scroll the NavBar, ScrollSpyList and ScrollMorph stories, and page the rail. Then turn on reduced motion in DevTools and repeat: colour changes stay, movement stops.
+**Gate (Akshay):** in the browser, drag the canvas, scroll the NavBar, ScrollSpyList and ScrollMorph stories, open and close the NavBar Menu at 390, and page the rail. Then turn on reduced motion in DevTools and repeat: colour changes stay, movement stops.
 
 ## Phase 3: QA (one run)
 
