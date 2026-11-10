@@ -15,7 +15,9 @@ import { ColorTable, ShadowTable } from './Foundations';
 
 ## Action
 
-- `action` is the only accent. It fills CTA tabs, the toggle, header bands that mean "act here" and a hovered chip. Text on it is `on-action`.
+- `action` is the only accent. It fills CTA tabs, the toggle and a hovered chip. Text on it is `on-action`.
+- Header bands are neutral: `eggshell` with `on-light` text. Only a band that means "act here" takes `action`, through `tone="action"`.
+- In a CardRail the card tabs are neutral and take `action` only on hover and focus.
 - `action-ink` is for links and text accents: the darker shade on ground, paper and white in light, `action` itself on dark bands.
 - One action element per view: if two compete, remove one.
 

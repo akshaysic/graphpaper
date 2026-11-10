@@ -16,7 +16,7 @@ const meta = {
     label: 'Prompt',
     children: 'A ceramic vase on a plinth, late sun from the right, a soft shadow falling left. Muted sand and teal.',
   },
-  argTypes: { tone: { control: 'inline-radio', options: ['text', 'media'] } },
+  argTypes: { tone: { control: 'inline-radio', options: ['text', 'media', 'action'] } },
   decorators: [
     (Story) => (
       <GraphPaper style={{ padding: 'var(--space-m)' }}>

@@ -11,7 +11,9 @@ Graphpaper is a system for showing a creative tool built from nodes: big quiet t
 ## Color
 
 - Build pages from alternating bands: `paper` with the grid for product sections, plain `ground` for reading, and dark bands (`data-theme="dark"` on the section) for card rails, scroll-spy lists and the footer surround.
-- `action` is the only accent. It fills CTA tabs, the toggle, header bands that mean "act here" and a hovered chip. Text on it is `on-action`.
+- `action` is the only accent. It fills CTA tabs, the toggle and a hovered chip. Text on it is `on-action`.
+- Header bands are neutral: `eggshell` with `on-light` text. Only a band that means "act here" takes `action`, through `tone="action"`, and nothing uses it by default.
+- In a CardRail the card tabs are neutral (`surface` fill, `ink` text) and take `action` only on hover and focus.
 - `action-ink` is for links and text accents: the darker shade on ground, paper and white in light, `action` itself on dark bands. The active scroll-spy item on a dark band uses it.
 - One action element per view: if two compete, remove one.
 - Text is `ink`, secondary text `ink-muted`. `ink-faint` is for display sizes only.
@@ -29,6 +31,7 @@ Graphpaper is a system for showing a creative tool built from nodes: big quiet t
 
 - Anything people read is 16px or more: nav, links, body, captions, table cells, form labels.
 - `label` and `label-wide` (12px, uppercase) are for tags, eyebrows and evidence-kind labels only.
+- FooterSlab keeps its current sizes. It is frozen, and it is the one exception to the type floor.
 - `intro` is 20/30.
 
 ## Layout and spacing
@@ -64,7 +67,7 @@ if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
 
 ## States and focus
 
-- Hover changes fill, never size: `action` to `ink` on CTA tabs, `surface` to `action` on chips, none to `surface` on links and arrow buttons.
+- Hover changes fill, never size: `action` to `ink` on CTA tabs, `surface` to `action` on chips and on a rail's card tabs, none to `surface` on links and arrow buttons.
 - Keyboard focus on every control is `focus-ring`.
 - Active states change more than hue: a fill, a lightness jump (`ink-faint` to `action-ink`), or `aria-current`.
 - No shadows, gradients or blurs. Surfaces separate by value and by the grid.
@@ -80,10 +83,12 @@ The NavBar follows these rules.
 5. Action: CtaTab size "s" with "Book a call". Flush to the top-right corner, one rounded corner facing into the page. It is the only action-coloured thing in the nav.
 6. Layout: 64px tall, side padding equals the page gutter (space-l at 1440, space-s below 768), items on one baseline.
 7. Surface: solid. At the top of the page it takes the ground of the band below it; after 150px of scroll (scroll-linked, reverses) it becomes solid `ground` with a 1px `connector` bottom border. No mix-blend modes, no blur, no transparency. This fixes links turning dark over images.
-8. Behaviour: sticky and always visible. It does not hide on scroll. Over dark bands it stays light.
-9. Below 768: wordmark, a text button "Menu", and the action tab. "Menu" opens a full-screen sheet on `ground` with the links at `title` size in 56px rows and a "Close" button. Focus is trapped, Esc closes, the page behind does not scroll. Under reduced motion the sheet appears without sliding.
+8. Behaviour: sticky and always visible. It does not hide on scroll. Over dark bands it stays light. Every page starts on a light band, so the bar is never over a dark band at the top.
+9. Below 768: wordmark, a text button "Menu", and the action tab. "Menu" opens a full-screen sheet on `ground`. Its top row keeps the wordmark and the action tab, with "Close" where "Menu" was; below it the links sit at `title` size in 56px rows. Focus is trapped, Esc closes, the page behind does not scroll. Under reduced motion the sheet appears without sliding.
 10. First focusable element on every page: a "Skip to content" link, visible on focus.
 11. Link order on akshaygite.com: Design work, How I work, About, Audio work.
+
+The pill's 4px by 8px padding (rule 3) is the one literal value in the system. Every other space is a token.
 
 ## Footer
 

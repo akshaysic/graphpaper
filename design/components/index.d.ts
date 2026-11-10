@@ -1,3 +1,4 @@
+// NavBarProps and NavBar below are superseded by v1.1 (docs/V1.1.md). The current props are in src/components/NavBar/NavBar.tsx.
 import type * as React from 'react';
 
 type Corner = 'bl' | 'br' | 'tl' | 'tr';

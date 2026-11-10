@@ -6,7 +6,8 @@ import type { Action } from '../types';
 
 export interface HeaderCardProps {
   label: string;
-  tone?: 'text' | 'media';
+  /** text (default) and media set the body; action is a text card whose band means "act here". */
+  tone?: 'text' | 'media' | 'action';
   src?: string;
   alt?: string;
   action?: Action;
@@ -21,7 +22,7 @@ export function HeaderCard({ label, tone, src, alt, action, actionStyle, style, 
   const mediaBody = src ? <img src={src} alt={alt || ''} /> : <div className="gp-placeholder small">{alt || 'Output'}</div>;
   return (
     // The section is named by its label, so the band repeating it stays out of the accessibility tree.
-    <section className={cx('gp-hcard', isMedia && 'gp-hcard--media', className)} style={style} aria-label={label}>
+    <section className={cx('gp-hcard', isMedia && 'gp-hcard--media', tone === 'action' && 'gp-hcard--action', className)} style={style} aria-label={label}>
       <div className="gp-hcard__band label" aria-hidden="true">
         {label}
       </div>
