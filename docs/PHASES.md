@@ -7,7 +7,7 @@ Each phase is one Claude Code run. Read docs/BRIEF.md first. Stop at every gate:
 | 1 Foundations | Done, 1586db8 |
 | 2a Static components | Done, 06573e9 |
 | 2b Behaviour components | Done, ce60fa1 |
-| 3 QA | Ready to commit |
+| 3 QA | Done, b6becb6 |
 | 4 Publish | Ready to commit |
 | 5 Portfolio link | Runs in the akshaygite.com repo |
 | 6 Sync back | Only when Akshay asks |
