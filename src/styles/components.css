@@ -85,7 +85,7 @@ h1, h2, h3, p { margin: 0; font-weight: 400; }
 .gp-nav__link[aria-current="page"] .gp-nav__text { background: var(--ink); color: var(--ground); }
 /* The action tab fills the bar's height in the top-right corner, its label on the bar's baseline. */
 .gp-nav__cta { align-self: stretch; display: flex; }
-.gp-nav__cta .gp-tab { height: 100%; align-items: center; text-transform: none; }
+.gp-nav__cta .gp-tab { height: 100%; align-items: center; }
 /* Below 768 the links fold into a full-screen sheet on ground. */
 .gp-sheet { position: fixed; inset: 0; z-index: 20; display: flex; flex-direction: column; overflow-y: auto; overscroll-behavior: contain; background: var(--ground); color: var(--ink); animation: gp-sheet-in var(--dur-slow) var(--ease-out-cubic); }
 @keyframes gp-sheet-in { from { transform: translateY(-100%); } }
@@ -173,7 +173,9 @@ h1, h2, h3, p { margin: 0; font-weight: 400; }
 .gp-panel { display: grid; gap: var(--space-xs); padding: var(--space-xs); border-radius: var(--radius-l); }
 
 /* MediaCard and CardRail */
-.gp-card { display: flex; flex-direction: column; gap: var(--space-s); width: 420px; flex: none; color: var(--ink); }
+/* A card on its own shrinks to fit a phone; in a rail it keeps the width the rail pages by. */
+.gp-card { display: flex; flex-direction: column; gap: var(--space-s); width: 420px; max-width: 100%; flex: none; color: var(--ink); }
+.gp-rail .gp-card { max-width: none; }
 .gp-card__frame { position: relative; aspect-ratio: 5 / 3; border-radius: var(--radius-m); overflow: hidden; background: var(--media); }
 .gp-card__img { position: absolute; inset: 0; transition: transform var(--dur-slow) var(--ease-out-quad); }
 .gp-card__img img { width: 100%; height: 100%; object-fit: cover; display: block; }
@@ -185,9 +187,10 @@ h1, h2, h3, p { margin: 0; font-weight: 400; }
 .gp-rail { overflow: hidden; }
 .gp-rail__track { display: flex; gap: var(--space-m); padding: var(--space-s) 0; }
 .gp-rail--animate .gp-rail__track { transition: transform var(--dur-slow) var(--ease-out-cubic); }
-/* One action per view: a rail's card tabs are neutral and take the action fill only on hover and focus. */
-.gp-rail .gp-card__cta .gp-tab { background: var(--surface); color: var(--ink); }
-.gp-rail .gp-card__cta .gp-tab:is(:hover, :focus-visible) { background: var(--action); color: var(--on-action); }
+/* One action per view: a rail's card tabs, and the Run tab that shares ScrollMorph's view with its toggle,
+   are neutral and take the action fill only on hover and focus. */
+:is(.gp-rail .gp-card__cta, .gp-morph .gp-hcard__action) .gp-tab { background: var(--surface); color: var(--ink); }
+:is(.gp-rail .gp-card__cta, .gp-morph .gp-hcard__action) .gp-tab:is(:hover, :focus-visible) { background: var(--action); color: var(--on-action); }
 .gp-rail__controls { display: flex; align-items: center; gap: var(--space-xs); margin-top: var(--space-s); }
 
 /* ScrollSpyList: built for dark bands; on a light band the active item falls back to ink */
@@ -227,6 +230,9 @@ h1, h2, h3, p { margin: 0; font-weight: 400; }
   .gp-toggle--animate .gp-toggle__knob, .gp-rail--animate .gp-rail__track, .gp-card__img, .gp-chips__media, .gp-chips__media.is-on { transition: none; }
   .gp-reveal { opacity: 1; transform: none; transition: none; }
   .gp-sheet { animation: none; }
+  /* Their hover and press transforms are off above, so only the colour change keeps its transition. */
+  .gp-arrow { transition-property: background-color; }
+  .gp-plus { transition-property: color; }
 }
 
 @media (max-width: 767px) {

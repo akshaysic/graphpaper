@@ -12,7 +12,7 @@ const meta = {
   args: {
     framed: true,
     style: { height: 150, display: 'grid', placeItems: 'end start' },
-    children: <span className="label muted">paper and grid-line, 18px cells</span>,
+    children: <span className="body muted">paper and grid-line, 18px cells</span>,
   },
   argTypes: { children: { control: false } },
   decorators: [

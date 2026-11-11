@@ -111,7 +111,6 @@ export function NavBar({
   const ctaNode = (onClick?: () => void) =>
     cta ? (
       <div className="gp-nav__cta">
-        {/* Size s keeps the tab's shape; the label is body because the type floor puts nav text at 16px. */}
         <CtaTab
           size="s"
           corner="bl"
@@ -121,7 +120,7 @@ export function NavBar({
             cta.onClick?.();
           }}
         >
-          <span className="body">{cta.label}</span>
+          {cta.label}
         </CtaTab>
       </div>
     ) : null;

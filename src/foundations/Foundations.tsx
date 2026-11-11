@@ -37,11 +37,11 @@ export function TypeSpecimens() {
       {tokens.type.groups.map((group) => (
         <section key={group.name} className="fd-group">
           <h2 className="label fd-muted">{group.name}</h2>
-          {'note' in group ? <p className="small fd-muted">{group.note}</p> : null}
+          {'note' in group ? <p className="body fd-muted">{group.note}</p> : null}
           {group.styles.map((style) => (
             <article key={style.name} className="fd-type">
               <div className={`${style.name} fd-type__sample`}>{style.sample}</div>
-              <dl className="fd-type__specs small">
+              <dl className="fd-type__specs body">
                 <dt className="label-wide">{style.name}</dt>
                 <dd>{formatTypeSpecs(style)}</dd>
                 <dd className="fd-muted">{style.usage}</dd>
@@ -50,7 +50,7 @@ export function TypeSpecimens() {
           ))}
         </section>
       ))}
-      <p className="small fd-muted">Family: {tokens.type.families.sans}. {tokens.type.note}</p>
+      <p className="body fd-muted">Family: {tokens.type.families.sans}. {tokens.type.note}</p>
     </div>
   );
 }
@@ -64,7 +64,7 @@ export function SpacingScale() {
           <div className="fd-measure">
             <div className="fd-bar" style={{ width: `var(--${token.name})`, height: token.name === 'grid-cell' ? `var(--${token.name})` : undefined }} />
           </div>
-          <p className="small fd-muted">{token.usage}</p>
+          <p className="body fd-muted">{token.usage}</p>
         </div>
       ))}
     </div>
@@ -79,7 +79,7 @@ export function RadiusScale() {
           <div className="fd-radius__shape" style={{ borderTopLeftRadius: `var(--${token.name})` }} />
           <figcaption>
             <TokenName name={token.name} value={token.value} />
-            <p className="small fd-muted">{token.usage}</p>
+            <p className="body fd-muted">{token.usage}</p>
           </figcaption>
         </figure>
       ))}
@@ -116,7 +116,7 @@ export function OpacityTable() {
           <div className="fd-measure">
             <div className="fd-bar fd-bar--block" style={{ opacity: `var(--${token.name})` }} />
           </div>
-          <p className="small fd-muted">{token.usage}</p>
+          <p className="body fd-muted">{token.usage}</p>
         </div>
       ))}
     </div>
@@ -140,10 +140,10 @@ function ThemedTokenTable({ tokens: rows, renderSample }: { tokens: NamedToken[]
           {THEMES.map((theme) => (
             <div key={theme} data-theme={theme} className="fd-themed" role="cell">
               {renderSample(token.name)}
-              <code className="small">{themedValue(token.value, theme)}</code>
+              <code className="body">{themedValue(token.value, theme)}</code>
             </div>
           ))}
-          <p className="small fd-muted" role="cell">
+          <p className="body fd-muted" role="cell">
             {token.usage}
           </p>
         </div>
@@ -159,7 +159,7 @@ function MotionDemo({ name, value, usage, style }: { name: string; value: string
       <div className="fd-motion" style={style} tabIndex={0} role="img" aria-label={`${name}: hover or focus to play`}>
         <div className="fd-motion__block" />
       </div>
-      <p className="small fd-muted">{usage}</p>
+      <p className="body fd-muted">{usage}</p>
     </div>
   );
 }
@@ -168,7 +168,7 @@ function TokenName({ name, value }: { name: string; value: string }) {
   return (
     <div className="fd-token-name">
       <span className="label-wide">{name}</span>
-      <code className="small fd-muted">{value}</code>
+      <code className="body fd-muted">{value}</code>
     </div>
   );
 }

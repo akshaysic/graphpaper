@@ -22,7 +22,7 @@ function Demo({ checked, onChange, ...props }: ToggleProps) {
           onChange?.(next);
         }}
       />
-      <span className="label muted">{isOn ? 'Tool view' : 'Graph view'}</span>
+      <span className="body muted">{isOn ? 'Tool view' : 'Graph view'}</span>
     </div>
   );
 }

@@ -14,7 +14,7 @@ export interface CtaTabProps {
   children?: ReactNode;
 }
 
-const TAB_TYPE: Record<NonNullable<CtaTabProps['size']>, string> = { s: 'label', l: 'display-l', xl: 'display-xl' };
+const TAB_TYPE: Record<NonNullable<CtaTabProps['size']>, string> = { s: 'body', l: 'display-l', xl: 'display-xl' };
 
 export function CtaTab({ size = 's', corner = 'bl', href, onClick, style, className, 'aria-label': ariaLabel, children }: CtaTabProps) {
   const shared = {

@@ -51,3 +51,36 @@ export const Default: Story = {
     await waitFor(() => expect(parseFloat(node.style.left)).toBe(left + 8));
   },
 };
+
+/** Below 768px the nodes stack in one column inside the canvas, connectors run top to bottom and dragging is off. */
+export const Phone: Story = {
+  globals: { viewport: { value: 'phone', isRotated: false } },
+  play: async ({ canvasElement }) => {
+    const canvas = await waitFor(() => {
+      const element = canvasElement.querySelector<HTMLElement>('.gp-canvas');
+      expect(element?.querySelectorAll('.gp-node')).toHaveLength(NODES.length);
+      return element as HTMLElement;
+    });
+    const bounds = canvas.getBoundingClientRect();
+    const nodes = Array.from(canvas.querySelectorAll<HTMLElement>('.gp-node'));
+    const boxes = nodes.map((node) => node.getBoundingClientRect());
+    for (const node of nodes) {
+      await expect(node).not.toHaveAttribute('data-drag');
+      await expect(node).not.toHaveAttribute('tabindex');
+    }
+    const centre = boxes[0].left + boxes[0].width / 2;
+    boxes.forEach((box, row) => {
+      expect(box.left).toBeGreaterThanOrEqual(bounds.left);
+      expect(box.right).toBeLessThanOrEqual(bounds.right);
+      expect(box.bottom).toBeLessThanOrEqual(bounds.bottom);
+      expect(Math.abs(box.left + box.width / 2 - centre)).toBeLessThan(1);
+      if (row > 0) expect(box.top).toBeGreaterThan(boxes[row - 1].bottom);
+    });
+    const ports = Array.from(canvas.querySelectorAll('.gp-wires g'), (wire) =>
+      Array.from(wire.querySelectorAll('circle'), (disc) => Number(disc.getAttribute('cy'))),
+    );
+    expect(ports).toHaveLength(LINKS.length);
+    for (const [fromY, toY] of ports) expect(toY).toBeGreaterThan(fromY);
+    await expect(canvas.querySelector('.gp-canvas__hint')).toBeNull();
+  },
+};

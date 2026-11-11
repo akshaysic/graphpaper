@@ -31,7 +31,7 @@ const withTheme: Decorator = (Story, context) => (
 function ThemedDocsContainer({ children, context }: PropsWithChildren<DocsContainerProps>) {
   const theme = useSyncExternalStore(subscribeTheme, getTheme);
   return (
-    <div data-theme={theme} className="gp-docs">
+    <div data-theme={theme} className="gp-docs body">
       <DocsContainer context={context} theme={theme === 'dark' ? themes.dark : themes.light}>
         {children}
       </DocsContainer>

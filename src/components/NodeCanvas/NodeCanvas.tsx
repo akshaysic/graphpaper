@@ -4,7 +4,8 @@ import { clamp } from '../../utils/clamp';
 import { cx } from '../../utils/cx';
 import { useWidth } from '../../utils/useWidth';
 import { NodeCard } from '../NodeCard';
-import { NODE_HEAD, Wire } from '../../utils/wire';
+import { downCurve, laneCurve, NODE_HEAD, Wire } from '../../utils/wire';
+import { stackLayout } from './stackLayout';
 
 export interface CanvasNode {
   id: string;
@@ -55,20 +56,16 @@ export function NodeCanvas({ nodes: desktopNodes = [], links = [], nodesMobile, 
   const wrap = useRef<HTMLDivElement>(null);
   const width = useWidth(wrap);
   const narrow = width > 0 && width < NARROW;
-  const [nodes, setNodes] = useState(() => copyNodes(desktopNodes));
-  // bundle.js swaps to the phone layout when the width crosses 768, and only when one is given.
-  // Adjusting state during render keeps that without an effect.
-  const [layoutNarrow, setLayoutNarrow] = useState(narrow);
-  if (layoutNarrow !== narrow) {
-    setLayoutNarrow(narrow);
-    if (nodesMobile) setNodes(copyNodes(narrow ? nodesMobile : desktopNodes));
-  }
+  // Only the desktop layout moves, so only it is state. Below 768 the stack is worked out from the props on every render.
+  const [desktopLayout, setDesktopLayout] = useState(() => copyNodes(desktopNodes));
+  const stack = narrow ? stackLayout(nodesMobile ?? desktopNodes, linksMobile ?? links, width) : null;
+  const nodes = stack ? stack.nodes : desktopLayout;
   const drag = useRef<Drag | null>(null);
   const [dragging, setDragging] = useState<string | null>(null);
   const canDrag = draggable !== false && !narrow;
 
   function move(id: string, x: number, y: number) {
-    setNodes((list) =>
+    setDesktopLayout((list) =>
       list.map((node) => {
         if (node.id !== id) return node;
         const fullHeight = (node.h || 100) + headHeight(node);
@@ -108,14 +105,24 @@ export function NodeCanvas({ nodes: desktopNodes = [], links = [], nodesMobile, 
   }
 
   const byId = new Map(nodes.map((node) => [node.id, node]));
-  const wires = (narrow && linksMobile ? linksMobile : links).map(([from, to], index) => {
-    const a = byId.get(from);
-    const b = byId.get(to);
-    return a && b ? <Wire key={index} from={[a.x + a.w, portY(a)]} to={[b.x, portY(b)]} /> : null;
-  });
+  const wires = stack
+    ? stack.wires.map(({ from, to, laneX }, index) => (
+        <Wire key={index} from={from} to={to} d={laneX === undefined ? downCurve(from, to) : laneCurve(from, to, laneX, stack.reach)} />
+      ))
+    : links.map(([from, to], index) => {
+        const a = byId.get(from);
+        const b = byId.get(to);
+        return a && b ? <Wire key={index} from={[a.x + a.w, portY(a)]} to={[b.x, portY(b)]} /> : null;
+      });
 
   return (
-    <div ref={wrap} className={cx('gp-canvas', 'gp-paper', className)} style={{ height }} role="group" aria-label={label || 'Workflow canvas'}>
+    <div
+      ref={wrap}
+      className={cx('gp-canvas', 'gp-paper', className)}
+      style={{ height: stack ? stack.height : height }}
+      role="group"
+      aria-label={label || 'Workflow canvas'}
+    >
       <svg className="gp-wires" aria-hidden="true">
         {wires}
       </svg>
@@ -158,7 +165,7 @@ export function NodeCanvas({ nodes: desktopNodes = [], links = [], nodesMobile, 
           })
         : null}
       {hint && canDrag ? (
-        <span className="gp-canvas__hint label muted" aria-hidden="true">
+        <span className="gp-canvas__hint body muted" aria-hidden="true">
           {hint}
         </span>
       ) : null}

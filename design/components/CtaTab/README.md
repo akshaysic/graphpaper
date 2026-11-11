@@ -4,7 +4,7 @@ The only call to action: a flat action-coloured block pushed flush against an ed
 
 **You provide** a label (a verb, two words at most), `href` or `onClick`, a `size` and the `corner` that rounds.
 
-- `s`: `label` type. Cards, panels, and the nav once compressed.
+- `s`: `body` type, so the label meets the 16px floor. Cards, panels and the nav.
 - `l`: `display-l` type. The nav at the top of a page.
 - `xl`: `display-xl` type, fluid, corner `radius-xl`. The footer only.
 

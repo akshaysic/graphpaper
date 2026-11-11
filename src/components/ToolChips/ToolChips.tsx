@@ -20,7 +20,7 @@ export interface ToolChipsProps {
 function MediaLayer({ on, src, alt }: { on: boolean; src?: string; alt?: string }) {
   return (
     <div className={cx('gp-chips__media', on && 'is-on')} aria-hidden={!on}>
-      {src ? <img src={src} alt={alt || ''} /> : <div className="gp-placeholder small">{alt}</div>}
+      {src ? <img src={src} alt={alt || ''} /> : <div className="gp-placeholder body">{alt}</div>}
     </div>
   );
 }

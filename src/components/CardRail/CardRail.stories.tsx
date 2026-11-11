@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { expect, userEvent, within } from 'storybook/test';
+import { expect, userEvent, waitFor, within } from 'storybook/test';
 
 import { readmeDescription } from '../../../.storybook/readme';
 import readme from '../../../design/components/CardRail/README.md?raw';
@@ -39,5 +39,23 @@ export const Default: Story = {
     await expect(canvas.getByText('2 / 5')).toBeInTheDocument();
     await userEvent.click(canvas.getByRole('button', { name: 'Next card' }));
     await expect(canvas.getByText('3 / 5')).toBeInTheDocument();
+  },
+};
+
+/** On a phone the active card shrinks to the rail minus a gutter each side, so nothing of it is cut. */
+export const Phone: Story = {
+  globals: { viewport: { value: 'phone', isRotated: false } },
+  play: async ({ canvasElement }) => {
+    const rail = canvasElement.querySelector<HTMLElement>('.gp-rail');
+    const active = canvasElement.querySelector<HTMLElement>('.gp-card.is-active');
+    await expect(rail).not.toBeNull();
+    await expect(active).not.toBeNull();
+    const railBox = (rail as HTMLElement).getBoundingClientRect();
+    // The track slides into place once the rail is measured, so wait for it to settle.
+    await waitFor(() => {
+      const cardBox = (active as HTMLElement).getBoundingClientRect();
+      expect(cardBox.left).toBeGreaterThanOrEqual(railBox.left);
+      expect(cardBox.right).toBeLessThanOrEqual(railBox.right);
+    });
   },
 };

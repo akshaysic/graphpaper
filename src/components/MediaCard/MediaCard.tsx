@@ -22,7 +22,7 @@ export function MediaCard({ title, src, alt, tags = [], href, onAction, actionLa
     <article className={cx('gp-card', active && 'is-active', className)} style={style}>
       <h3 className="title">{title}</h3>
       <div className="gp-card__frame">
-        <div className="gp-card__img">{src ? <img src={src} alt={alt || ''} /> : <div className="gp-placeholder small">{alt || 'Preview image'}</div>}</div>
+        <div className="gp-card__img">{src ? <img src={src} alt={alt || ''} /> : <div className="gp-placeholder body">{alt || 'Preview image'}</div>}</div>
         {tags.length ? (
           // The tag chain is a picture of the workflow steps; the title already names the card.
           <div className="gp-card__tags" aria-hidden="true">

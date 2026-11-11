@@ -25,12 +25,12 @@ export function NodeCard({ type, model, kind, src, alt, width, height, style, cl
   const bodySize = { height, flex: height != null ? 'none' : undefined };
   const body =
     kind === 'text' ? (
-      <div className="gp-node__body gp-node__body--text small" style={bodySize}>
+      <div className="gp-node__body gp-node__body--text body" style={bodySize}>
         {children}
       </div>
     ) : (
       <div className="gp-node__body" style={bodySize}>
-        {src ? <img src={src} alt={alt || ''} /> : <div className="gp-placeholder small">{alt || 'Media'}</div>}
+        {src ? <img src={src} alt={alt || ''} /> : <div className="gp-placeholder body">{alt || 'Media'}</div>}
       </div>
     );
   return (

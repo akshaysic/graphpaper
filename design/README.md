@@ -23,7 +23,7 @@ Graphpaper is a system for showing a creative tool built from nodes: big quiet t
 ## Type
 
 - One family (Geist) at one weight (400). Size, case and tracking carry the hierarchy.
-- Eight styles: `display-xl` for section headlines, `display-l` for the footer name, `title` for cards, `intro` for intros and chips, `body` for anything longer than three lines and for the nav, `small` inside nodes and cards, `label` and `label-wide` for tags, eyebrows and evidence-kind labels.
+- Eight styles: `display-xl` for section headlines, `display-l` for the footer name, `title` for cards, `intro` for intros and chips, `body` for anything longer than three lines and for the nav, `small` only in the frozen footer, `label` and `label-wide` for tags, eyebrows and evidence-kind labels.
 - `display-xl` scales with clamp(44px, 6.53vw, 94px). Everything else stays fixed: body never goes below 16px and labels never below 12px on phones.
 - Components set type by adding the style's class. Do not declare font sizes in component CSS.
 

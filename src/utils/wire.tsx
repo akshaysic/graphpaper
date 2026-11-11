@@ -9,11 +9,29 @@ export function curve(a: Point, b: Point): string {
   return `M${a[0]} ${a[1]} C${a[0] + dx} ${a[1]}, ${b[0] - dx} ${b[1]}, ${b[0]} ${b[1]}`;
 }
 
-/** A connector with a port disc at each end. Render inside an svg.gp-wires. */
-export function Wire({ from, to }: { from: Point; to: Point }) {
+/** Cubic connector from an output port on a bottom edge to an input port on a top edge. Both ends run vertically. */
+export function downCurve(a: Point, b: Point): string {
+  const dy = Math.max(20, Math.abs(b[1] - a[1]) / 2);
+  return `M${a[0]} ${a[1]} C${a[0]} ${a[1] + dy}, ${b[0]} ${b[1] - dy}, ${b[0]} ${b[1]}`;
+}
+
+/**
+ * A vertical connector that turns out to a lane at laneX, runs down it past the nodes in between, and turns back in.
+ * reach is the vertical room each turn takes. Both ends still run vertically.
+ */
+export function laneCurve(a: Point, b: Point, laneX: number, reach: number): string {
+  const half = reach / 2;
+  return (
+    `M${a[0]} ${a[1]} C${a[0]} ${a[1] + half}, ${laneX} ${a[1] + half}, ${laneX} ${a[1] + reach} ` +
+    `L${laneX} ${b[1] - reach} C${laneX} ${b[1] - half}, ${b[0]} ${b[1] - half}, ${b[0]} ${b[1]}`
+  );
+}
+
+/** A connector with a port disc at each end. Render inside an svg.gp-wires. d replaces the default horizontal curve. */
+export function Wire({ from, to, d }: { from: Point; to: Point; d?: string }) {
   return (
     <g>
-      <path d={curve(from, to)} />
+      <path d={d ?? curve(from, to)} />
       <circle cx={from[0]} cy={from[1]} r={4.5} />
       <circle cx={to[0]} cy={to[1]} r={4.5} />
     </g>

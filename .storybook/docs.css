@@ -3,6 +3,9 @@
 .gp-docs .sbdocs-content,
 .gp-docs .sbdocs-content :is(h1, h2, h3, h4, p, li, td, th) { color: var(--ink); font-family: var(--font-sans); }
 .gp-docs .sbdocs-content a { color: var(--ink); }
+/* Type floor: Storybook sets docs prose and code at 13 to 14px. They inherit body (16/24) from the wrapper instead. */
+.gp-docs .sbdocs-content,
+.gp-docs .sbdocs-content :is(p, li, td, th, a, strong, em, code, pre, pre *) { font-size: inherit; line-height: inherit; }
 /* Graphpaper has one weight; Storybook's docs headings default to bold. */
 .gp-docs .sbdocs-content :is(h1, h2, h3, h4) { font-weight: 400; }
 /* Long inline code in design/README.md would otherwise widen the page at 390. */
