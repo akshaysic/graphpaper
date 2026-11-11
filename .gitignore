@@ -7,3 +7,4 @@ src/tokens/tokens.css
 .env*
 .memory/
 *.tsbuildinfo
+.vercel

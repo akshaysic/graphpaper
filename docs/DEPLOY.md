@@ -1,26 +1,37 @@
 # Deploy the Storybook
 
-The Storybook is a static site. Vercel builds it from `main` and serves it at graphpaper.akshaygite.com. After the first deploy, every push to `main` redeploys it at the same address.
+The Storybook is a static site. Vercel builds it from `main` and serves it at https://graphpaper.akshaygite.com. Every push to `main` redeploys it at the same address. It is live: the Vercel project is `graphpaper` under akshaysic-s-projects, and its production alias is https://graphpaper-alpha.vercel.app.
 
-1. Push the local commits, because `main` is ahead of origin:
+## Build settings
 
-   ```bash
-   git push origin main
-   ```
+The build settings live in the repo, so the Vercel dashboard needs no overrides:
 
-2. Open vercel.com/new and choose Import Git Repository. Pick `akshaysic/graphpaper`. If it is not listed, use Adjust GitHub App Permissions to give Vercel access to the repo.
-3. Framework Preset: Other. If Vercel suggests Storybook, switch it to Other so the commands below are the ones that run.
-4. Root Directory: leave it as `./`.
-5. Under Build and Output Settings, turn on the overrides and set:
-   - Build Command: `npm run build-storybook`. This compiles the tokens first and fixes the page title after.
-   - Output Directory: `storybook-static`
-   - Install Command: `npm ci`
-6. Choose Deploy. When it finishes, open the `.vercel.app` address it gives you. It should open on Read me first, and the tab should say Graphpaper.
-7. If the build fails on the Node version, go to Settings > Build and Deployment > Node.js Version, choose 24.x and redeploy. The project is built and tested on Node 24.
-8. In the project, go to Settings > Domains and add `graphpaper.akshaygite.com`.
-9. Vercel shows the DNS record the subdomain needs, usually a CNAME named `graphpaper`. Create that record exactly as shown where the DNS for akshaygite.com is managed. If akshaygite.com already uses Vercel's nameservers, Vercel adds the record itself.
-10. Wait until the domain shows Valid Configuration. Vercel issues the certificate on its own.
-11. Open https://graphpaper.akshaygite.com on your phone. Send the address to yourself in a message to check the link preview: the cover image, the title Graphpaper and the line "Graphpaper is a design-system study."
+- `vercel.json`: no framework preset, install `npm ci`, build `npm run build-storybook`, output `storybook-static`. The build command compiles the tokens first and fixes the page title after.
+- `package.json` `engines`: Node 24.x. The project is built and tested on Node 24.
+
+## How it was set up
+
+These steps are done. Repeat them only to rebuild the project from scratch.
+
+1. Push `main`: `git push origin main`.
+2. Create the project and connect the repo: `vercel link --yes --project graphpaper`. This also connects `akshaysic/graphpaper` on GitHub, so pushes to `main` deploy. `vercel git connect` confirms it.
+3. Deploy: `vercel deploy --prod`. The deployment's own `.vercel.app` address asks for a Vercel login, because Deployment Protection covers it. The production alias and the custom domain are public.
+4. Add the domain: `vercel domains add graphpaper.akshaygite.com graphpaper`. A subdomain needs the project name.
+5. Check it: `vercel domains verify graphpaper.akshaygite.com`.
+
+## DNS
+
+The DNS for akshaygite.com is managed at WordPress.com (ns1 to ns3.wordpress.com), not at Vercel. No record had to be added: a wildcard `*` CNAME there points every subdomain at akshaygite.com, whose A record already points at Vercel, so Vercel verified the subdomain and issued its certificate.
+
+That works only while the wildcard and the apex A record stay as they are. To make the subdomain independent of them, add this record in the WordPress.com DNS settings for akshaygite.com:
+
+| Type | Name | Value |
+|---|---|---|
+| CNAME | `graphpaper` | `66aa95101210308d.vercel-dns-017.com.` |
+
+## Check the live site
+
+Open https://graphpaper.akshaygite.com on your phone. It should open on Read me first, and the tab should say Graphpaper. Send the address to yourself in a message to check the link preview: the cover image, the title Graphpaper and the line "Graphpaper is a design-system study."
 
 ## Changing the link preview
 
